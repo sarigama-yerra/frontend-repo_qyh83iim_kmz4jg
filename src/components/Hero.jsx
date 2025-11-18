@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 export default function Hero() {
   return (
-    <section id="home" className="relative min-h-[90vh] flex items-center overflow-hidden">
+    <section id="home" className="relative min-h-[100vh] flex items-center overflow-hidden">
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-slate-900 via-slate-900 to-slate-950" />
 
@@ -14,6 +14,20 @@ export default function Hero() {
 
       {/* Soft gradient overlay to enhance contrast (non-blocking) */}
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-slate-900/40 via-slate-900/20 to-slate-950" />
+
+      {/* Animated particles */}
+      <div className="pointer-events-none absolute inset-0">
+        {Array.from({ length: 18 }).map((_, i) => (
+          <motion.span
+            key={i}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: [0, 1, 0], y: [-10, 10, -10] }}
+            transition={{ duration: 4 + (i % 5), repeat: Infinity, delay: i * 0.15 }}
+            className="absolute h-1 w-1 rounded-full bg-white/50"
+            style={{ left: `${(i * 11) % 100}%`, top: `${(i * 7) % 100}%` }}
+          />
+        ))}
+      </div>
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24 w-full">
         <div className="max-w-2xl">

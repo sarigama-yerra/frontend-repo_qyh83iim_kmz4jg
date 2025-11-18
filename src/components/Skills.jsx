@@ -1,4 +1,5 @@
 import { Code2, Sparkles, Rocket, Cpu } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const skills = [
   { icon: Code2, title: 'Frontend', items: ['React', 'Vite', 'Tailwind', 'Framer Motion'] },
@@ -17,8 +18,16 @@ export default function Skills() {
         </div>
 
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {skills.map(({ icon: Icon, title, items }) => (
-            <div key={title} className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur">
+          {skills.map(({ icon: Icon, title, items }, idx) => (
+            <motion.div
+              key={title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6, delay: idx * 0.05 }}
+              whileHover={{ y: -4 }}
+              className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur"
+            >
               <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-500 flex items-center justify-center text-white shadow-lg shadow-blue-500/30">
                 <Icon className="w-5 h-5" />
               </div>
@@ -28,7 +37,7 @@ export default function Skills() {
                   <li key={i} className="">{i}</li>
                 ))}
               </ul>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

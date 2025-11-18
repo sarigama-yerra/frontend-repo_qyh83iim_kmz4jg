@@ -43,23 +43,36 @@ export default function Projects() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.6, delay: i * 0.05 }}
-              className="group rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur hover:bg-white/10 transition-colors"
+              whileHover={{ y: -6 }}
+              className="group overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur"
             >
-              <div className="aspect-video rounded-xl bg-gradient-to-br from-blue-500/20 to-indigo-500/20 border border-white/10" />
+              <div className="p-6">
+                <div className="aspect-video overflow-hidden rounded-xl border border-white/10">
+                  <div className="h-full w-full bg-gradient-to-br from-blue-500/20 to-indigo-500/20" />
+                </div>
 
-              <h3 className="mt-4 text-xl font-semibold text-white">{p.title}</h3>
-              <p className="mt-2 text-sm text-slate-300">{p.description}</p>
+                <h3 className="mt-4 text-xl font-semibold text-white">{p.title}</h3>
+                <p className="mt-2 text-sm text-slate-300">{p.description}</p>
 
-              <div className="mt-4 flex flex-wrap gap-2">
-                {p.tags.map((t) => (
-                  <span key={t} className="text-xs px-2.5 py-1 rounded-full bg-white/10 text-slate-200 border border-white/10">{t}</span>
-                ))}
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {p.tags.map((t) => (
+                    <span key={t} className="text-xs px-2.5 py-1 rounded-full bg-white/10 text-slate-200 border border-white/10">{t}</span>
+                  ))}
+                </div>
+
+                <div className="mt-5 flex items-center gap-3">
+                  <a href={p.link} className="inline-flex items-center gap-1 text-blue-300 hover:text-white text-sm"><ExternalLink className="w-4 h-4" />Live</a>
+                  <a href={p.github} className="inline-flex items-center gap-1 text-blue-300 hover:text-white text-sm"><Github className="w-4 h-4" />Code</a>
+                </div>
               </div>
 
-              <div className="mt-5 flex items-center gap-3">
-                <a href={p.link} className="inline-flex items-center gap-1 text-blue-300 hover:text-white text-sm"><ExternalLink className="w-4 h-4" />Live</a>
-                <a href={p.github} className="inline-flex items-center gap-1 text-blue-300 hover:text-white text-sm"><Github className="w-4 h-4" />Code</a>
-              </div>
+              {/* gradient hover bar */}
+              <motion.div
+                initial={{ x: '-100%' }}
+                whileHover={{ x: '0%' }}
+                transition={{ duration: 0.4 }}
+                className="h-1 w-full bg-gradient-to-r from-blue-500 via-cyan-400 to-indigo-500"
+              />
             </motion.div>
           ))}
         </div>
